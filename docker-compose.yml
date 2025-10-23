@@ -1,0 +1,20 @@
+services:
+  php:
+    build: .
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/var/www/html/
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/phpapp
+volumes:
+  db_data:
